@@ -1,3 +1,4 @@
-# Quasar App
+# Parantion Chatbox
 
-> WIP
+> A project for students of Saxion
+
