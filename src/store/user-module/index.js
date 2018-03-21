@@ -29,8 +29,9 @@ const mutations = {
     }
   },
 
+  // TODO: this mutation should set the user (given as parameter) that is defined in the state.
   SET_USER (state, user) {
-    state.user = user
+    // code here
   },
 
   CLEAR_STATE (state) {
@@ -40,20 +41,25 @@ const mutations = {
 }
 
 const actions = {
+  // TODO: Step one: create an object with the keys 'user' and 'id'. Give the key 'user' the value of the parameter username.
+  // TODO: Give the key 'id' the value that comes from the apiService call as response.
+  // TODO: Step two: commit the user to the store with the SET_USER mutation.
   login ({commit}, username) {
-    let id = apiService.login(username)
-    let user = {id: id, user: username}
-    commit('SET_USER', user)
+    // start programming here
   },
 
+  // TODO: this is the action in which you should call the apiService its method 'subscribeUsers'. This function
+  // TODO: has a callback response which you should set with the mutation SET_ALL_USERS
   subscribeUsers ({commit}) {
-    apiService.subscribeUsers((res) => {
-      if (res.user.data) commit('SET_ALL_USERS', res.user)
+    apiService.subscribeUsers((response) => {
+      // code here, you can do console log to check what's in the response
     })
   },
 
+  // TODO: BONUS
+  // Call the apiService addUsersAsFriend method, along with the id parameter.
   addFriend ({commit}, id) {
-    apiService.addUsersAsFriend(id)
+    // code here
   },
 
   clearState ({commit}) {

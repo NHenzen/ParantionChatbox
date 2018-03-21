@@ -27,15 +27,19 @@ const mutations = {
 }
 
 const actions = {
-  subScribeToMessages ({commit}) {
-    apiService.subscribeMessages(res => {
-      console.log('%c msg received', 'color:  #11b0d8', res)
-      commit('SET_MESSAGES', res.message.data)
+  // TODO: this is the action in which you should call the apiService its method 'subscribeMessages'. This function
+  // TODO: has a callback response which you should set with the mutation SET_MESSAGES
+  subScribeToMessages ({commit, dispatch}) {
+    dispatch('clearState') // leave this here so the messages won't be blotted
+
+    apiService.subscribeMessages((response) => {
+      // code here, check with console log to see what's in the response
     })
   },
 
+  // TODO: this action only needs to call the apiService method 'sendMessage' along with the message parameter.
   setMessage ({commit, state}, message) {
-    apiService.sendMessage(message)
+    // code here
   },
 
   clearState ({commit}) {

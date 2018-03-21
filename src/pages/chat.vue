@@ -39,30 +39,35 @@ export default {
 
   data () {
     return {
-      myMessages: [],
       myMessage: ''
     }
   },
 
   computed: {
+    // TODO: GET USERS
+    // TODO: this is a computed property called users. This property should call and RETURN a getter of the store called 'getUsers'
+    // TODO: remove the empty array and replace with the getter.
     users () {
-      return this.$store.getters['user/getUsers']
+      // add code here
+      return []
     },
+
+    // TODO: GET MESSAGES
+    // TODO: this is also a computed property that returns the messages everybody sends. Call the getter of the store 'getGlobalMessages'.
     messages () {
-      let messages = this.$store.getters['chat/getGlobalMessages']
+      // Replace empty array by the getter.
+      let messages = []
+
       // sort messages by date
-      messages.sort((a, b) => {
-        a = new Date(a.time)
-        b = new Date(b.time)
-        return a < b ? -1 : a > b ? 1 : 0
-      })
+      messages.sort((a, b) => b.time - a.time)
       return messages
     }
   },
 
+  // TODO: The created () is a lifecycle hook in which we are going to call an ACTION from the store.
+  // TODO: the call is called 'subScribeToMessages
   created () {
-    this.$store.dispatch('chat/clearState')
-    this.$store.dispatch('chat/subScribeToMessages')
+    // code here
   },
 
   updated () {
@@ -70,15 +75,20 @@ export default {
   },
 
   methods: {
+    // TODO: this method should send a message to the store with an action called setMessage, along with the parameter
+    // TODO: of the object called myMessage.
     sendMessage (value) {
-      if (value.key !== 'Enter') return
-      if (this.myMessage === '') return
+      // This is to ensure that the user won't send an empty message.
+      // if (value.key !== 'Enter') return
+      // if (this.myMessage === '') return
 
-      // The dispatch calls an action from the store.
-      this.$store.dispatch('chat/setMessage', this.myMessage)
+      // code here
+
       this.myMessage = ''
     },
 
+    // ########################################################################### //
+    // ####################  END OF PROGRAMMING FOR YOU ######################### //
     getUserOfMsg (id) {
       let found = this.users.find(x => x.id === id)
       if (found) return found.data.name

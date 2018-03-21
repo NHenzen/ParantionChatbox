@@ -25,11 +25,11 @@ export default {
   methods: {
     setUser (value) {
       // The checks are there to ensure that a user should enter when he has entered a username
-      if (value.key !== 'Enter') return
-      if (this.username === '') return
+      // if (value.key !== 'Enter') return
+      // if (this.username === '') return
 
-      this.$store.dispatch('user/login', this.username)
-      this.$router.push('/')
+      // TODO: call the action 'login' from the store from the user module, and pass the username as parameter.
+      // TODO: Then call the router to push the user to the login page
     }
   }
 }

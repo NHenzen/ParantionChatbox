@@ -2,7 +2,9 @@
   <div>
     <q-card class="bg-white shadow-2">
       <q-list link v-if="allUsers">
-        <q-list-header>Online ({{allUsers.length}}) <q-icon name="fiber_manual_record" color="green"></q-icon></q-list-header>
+        <q-list-header>Online ({{allUsers.length}})
+          <q-icon name="fiber_manual_record" color="green"></q-icon>
+        </q-list-header>
         <q-item-separator></q-item-separator>
         <q-item v-for="(user, index) in allUsers" :key="index" @click.native="addFriend(user.id)">
           <q-item-side icon="person"></q-item-side>
@@ -16,23 +18,6 @@
           <q-item-side icon="person"></q-item-side>
           <q-item-main :label="getFriendName(friend)"></q-item-main>
         </q-item>
-        <!--<q-item>-->
-        <!--<q-item-main label="Online"></q-item-main>-->
-        <!--</q-item>-->
-        <!--<q-item v-for="(friend, index) in myFriends" :key="index" v-if="friend.status === 'online'">-->
-        <!--<q-item-side icon="person"></q-item-side>-->
-        <!--<q-item-main :label="friend.name"></q-item-main>-->
-        <!--</q-item>-->
-
-        <!--<q-item-separator></q-item-separator>-->
-
-        <!--<q-item>-->
-        <!--<q-item-main label="Offline"></q-item-main>-->
-        <!--</q-item>-->
-        <!--<q-item v-for="(friend, index) in myFriends" :key="index" v-if="friend.status === 'offline'">-->
-        <!--<q-item-side icon="person"></q-item-side>-->
-        <!--<q-item-main :label="friend.name"></q-item-main>-->
-        <!--</q-item>-->
       </q-list>
     </q-card>
   </div>
@@ -41,28 +26,34 @@
 <script>
 export default {
   computed: {
+    // TODO: call the getter of the store of the user module 'getFriends'. This getter returns your friends. If you have no friends,
+    // TODO: return the empty array that is already given.
     myFriends () {
-      if (this.$store.getters['user/getFriends']) return this.$store.getters['user/getFriends']
-      else return []
+      return []
     },
 
+    // TODO: call the getter of the store of the user module 'getUsers'. This getter returns all users. If there are no users,
+    // TODO: return the empty array that is already given.
     allUsers () {
-      if (this.$store.getters['user/getUsers']) return this.$store.getters['user/getUsers']
-      else return []
+      return []
     }
   },
 
+  // TODO: in the created () lifecycle you should call an action from the store from the user module called 'subscribeUsers'
   created () {
-    this.$store.dispatch('user/subscribeUsers')
+    // code here
   },
 
   methods: {
+    // TODO: BONUS
+    // TODO: when the user clicks on another user in the list, you can add him as a friend. For this you need to call the action
+    // TODO: 'addFriend', along with the id of the user as parameter. Maybe you should also check wether the given id is already
+    // TODO: present in your friends list. I said MAYBE.
     addFriend (id) {
-      let isAdded = this.myFriends.find(x => x.id === id)
-      if (isAdded) return
-      this.$store.dispatch('user/addFriend', id)
+
     },
 
+    // No need to change this, this is only to display everyone's names in the chat box.
     getFriendName (id) {
       return this.allUsers.find(x => x.id === id).data.name
     }
